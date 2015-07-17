@@ -19,11 +19,11 @@
 
 package org.elasticsearch.cloud.aws.node;
 
+import com.google.common.collect.Maps;
 import org.apache.lucene.util.IOUtils;
 import org.elasticsearch.ExceptionsHelper;
 import org.elasticsearch.cloud.aws.AwsEc2Service;
 import org.elasticsearch.cluster.node.DiscoveryNodeService;
-import org.elasticsearch.common.collect.Maps;
 import org.elasticsearch.common.component.AbstractComponent;
 import org.elasticsearch.common.settings.Settings;
 
