@@ -19,7 +19,7 @@
 
 package org.elasticsearch.cloud.aws.blobstore;
 
-import org.elasticsearch.common.base.Charsets;
+import com.google.common.base.Charsets;
 import org.elasticsearch.test.ElasticsearchTestCase;
 import org.junit.Test;
 
