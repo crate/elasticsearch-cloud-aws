@@ -23,6 +23,8 @@ import com.amazonaws.ClientConfiguration;
 import com.amazonaws.Protocol;
 import com.amazonaws.auth.*;
 import com.amazonaws.internal.StaticCredentialsProvider;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.ec2.AmazonEC2;
 import com.amazonaws.services.ec2.AmazonEC2Client;
 import org.elasticsearch.ElasticsearchException;
@@ -150,8 +152,12 @@ public class AwsEc2Service extends AbstractLifecycleComponent<AwsEc2Service> {
                 logger.debug("using ec2 region [{}], with endpoint [{}]", region, endpoint);
                 client.setEndpoint(endpoint);
             }
+        } else {
+            Region currentRegion = Regions.getCurrentRegion();
+            if (currentRegion != null) {
+                client.setRegion(currentRegion);
+            }
         }
-
         return this.client;
 
     }
