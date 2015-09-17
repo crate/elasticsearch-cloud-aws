@@ -114,9 +114,10 @@ public class AwsEc2Service extends AbstractLifecycleComponent<AwsEc2Service> {
                     public long delayBeforeNextRetry(AmazonWebServiceRequest originalRequest,
                                                      AmazonClientException exception,
                                                      int retriesAttempted) {
-                        // with 10 retries the max delay time is 320s (10 * 2^5 * 1)
+                        // with 10 retries the max delay time is 320s (10 * 2^5 * 1) * 1000
                         logger.warn("EC2 API request failed, retry again. Reason was:", exception);
-                        return (long) (10d * Math.pow(2, ((double) retriesAttempted) / 2.0d) * (1.0d + rand.nextDouble()));
+                        return (long)  (10d * Math.pow(2, ((double) retriesAttempted) / 2.0d)
+                                * (1.0d + rand.nextDouble())) * 1000;
                     }
                 },
                 10,
