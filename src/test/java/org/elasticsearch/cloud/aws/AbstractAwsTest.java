@@ -42,6 +42,10 @@ import java.util.Map;
  */
 public abstract class AbstractAwsTest extends ElasticsearchIntegrationTest {
 
+    static {
+        ClassLoader.getSystemClassLoader().setDefaultAssertionStatus(true);
+    }
+
     /**
      * Those properties are set by the AWS SDK v1.9.4 and if not ignored,
      * lead to tests failure (see AbstractRandomizedTest#IGNORED_INVARIANT_PROPERTIES)

@@ -35,6 +35,10 @@ import static org.hamcrest.Matchers.equalTo;
  */
 public class S3OutputStreamTest extends ElasticsearchTestCase {
 
+    static {
+        ClassLoader.getSystemClassLoader().setDefaultAssertionStatus(true);
+    }
+
     private static final int BUFFER_SIZE = S3BlobStore.MIN_BUFFER_SIZE.bytesAsInt();
 
     @Test

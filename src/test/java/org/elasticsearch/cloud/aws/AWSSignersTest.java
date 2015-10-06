@@ -28,6 +28,10 @@ import static org.hamcrest.CoreMatchers.is;
 
 public class AWSSignersTest extends ElasticsearchTestCase {
 
+    static {
+        ClassLoader.getSystemClassLoader().setDefaultAssertionStatus(true);
+    }
+
     @Test
     public void testSigners() {
         assertThat(signerTester(null), is(false));
