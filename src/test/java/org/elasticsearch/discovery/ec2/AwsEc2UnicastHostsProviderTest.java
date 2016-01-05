@@ -25,7 +25,6 @@ import com.amazonaws.services.ec2.AmazonEC2Client;
 import com.google.common.collect.Lists;
 import org.elasticsearch.Version;
 import org.elasticsearch.cluster.node.DiscoveryNode;
-import org.elasticsearch.common.settings.ImmutableSettings;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.transport.TransportService;
 import org.junit.Test;
@@ -52,7 +51,7 @@ public class AwsEc2UnicastHostsProviderTest {
 
     @Test
     public void testGetNodeListEmptyCache() throws Exception {
-        ImmutableSettings.Builder builder = ImmutableSettings.settingsBuilder();
+        Settings.Builder builder = Settings.settingsBuilder();
         DummyEc2HostProvider provider = new DummyEc2HostProvider(builder.build(), transportService, client, Version.CURRENT) {
             @Override
             protected List<DiscoveryNode> fetchDynamicNodes() {
@@ -68,7 +67,7 @@ public class AwsEc2UnicastHostsProviderTest {
 
     @Test
     public void testGetNodeListCached() throws Exception {
-        ImmutableSettings.Builder builder = ImmutableSettings.settingsBuilder()
+        Settings.Builder builder = Settings.settingsBuilder()
                 .put("discovery.ec2.node_cache_time", "500ms");
         DummyEc2HostProvider provider = new DummyEc2HostProvider(builder.build(), transportService, client, Version.CURRENT) {
             @Override

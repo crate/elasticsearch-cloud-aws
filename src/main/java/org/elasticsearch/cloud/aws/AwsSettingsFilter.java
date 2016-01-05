@@ -19,7 +19,7 @@
 
 package org.elasticsearch.cloud.aws;
 
-import org.elasticsearch.common.settings.ImmutableSettings;
+import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.settings.SettingsFilter;
 
 /**
@@ -28,7 +28,7 @@ import org.elasticsearch.common.settings.SettingsFilter;
 public class AwsSettingsFilter implements SettingsFilter.Filter {
 
     @Override
-    public void filter(ImmutableSettings.Builder settings) {
+    public void filter(Settings.Builder settings) {
         settings.remove("cloud.key");
         settings.remove("cloud.account");
         settings.remove("cloud.aws.access_key");
