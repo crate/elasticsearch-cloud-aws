@@ -31,7 +31,6 @@ import com.amazonaws.retry.RetryPolicy;
 import com.amazonaws.services.ec2.AmazonEC2;
 import com.amazonaws.services.ec2.AmazonEC2Client;
 import org.elasticsearch.ElasticsearchException;
-import org.elasticsearch.ElasticsearchIllegalArgumentException;
 import org.elasticsearch.cloud.aws.network.Ec2NameResolver;
 import org.elasticsearch.cloud.aws.node.Ec2CustomNodeAttributes;
 import org.elasticsearch.cluster.node.DiscoveryNodeService;
@@ -77,7 +76,7 @@ public class AwsEc2Service extends AbstractLifecycleComponent<AwsEc2Service> {
         } else if ("https".equals(protocol)) {
             clientConfiguration.setProtocol(Protocol.HTTPS);
         } else {
-            throw new ElasticsearchIllegalArgumentException("No protocol supported [" + protocol + "], can either be [http] or [https]");
+            throw new IllegalArgumentException("No protocol supported [" + protocol + "], can either be [http] or [https]");
         }
         String account = componentSettings.get("access_key", settings.get("cloud.account"));
         String key = componentSettings.get("secret_key", settings.get("cloud.key"));
@@ -91,7 +90,7 @@ public class AwsEc2Service extends AbstractLifecycleComponent<AwsEc2Service> {
             try {
                 proxyPort = Integer.parseInt(portString, 10);
             } catch (NumberFormatException ex) {
-                throw new ElasticsearchIllegalArgumentException("The configured proxy port value [" + portString + "] is invalid", ex);
+                throw new IllegalArgumentException("The configured proxy port value [" + portString + "] is invalid", ex);
             }
             clientConfiguration.withProxyHost(proxyHost).setProxyPort(proxyPort);
         }
@@ -102,7 +101,7 @@ public class AwsEc2Service extends AbstractLifecycleComponent<AwsEc2Service> {
             logger.debug("using AWS API signer [{}]", awsSigner);
             try {
                 AwsSigner.configureSigner(awsSigner, clientConfiguration);
-            } catch (ElasticsearchIllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 logger.warn("wrong signer set for [cloud.aws.ec2.signer] or [cloud.aws.signer]: [{}]", awsSigner);
             }
         }
