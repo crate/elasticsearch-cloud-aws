@@ -26,7 +26,7 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.env.Environment;
 import org.elasticsearch.env.FailedToResolveConfigException;
 import org.elasticsearch.plugins.PluginsService;
-import org.elasticsearch.test.ElasticsearchIntegrationTest;
+import org.elasticsearch.test.ESIntegTestCase;
 import org.junit.After;
 import org.junit.Before;
 
@@ -40,7 +40,7 @@ import java.util.Map;
 /**
  *
  */
-public abstract class AbstractAwsTest extends ElasticsearchIntegrationTest {
+public abstract class AbstractAwsTest extends ESIntegTestCase {
 
     static {
         ClassLoader.getSystemClassLoader().setDefaultAssertionStatus(true);
